@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Predict Enrollment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+    <style>
+        /* Reset and body styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 50px 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Container styling */
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 700px;
+            width: 90%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 10; /* Make sure container is above background */
+        }
+
+        /* Form and heading styling */
+        h1 {
+            color: #333;
+            font-size: 2.2em;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1em;
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-top: 10px;
+            color: #333;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 15px;
+            margin: 10px 0 20px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4a69bd;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1e3799;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #4a69bd;
+            font-size: 1em;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Background floating icons container */
+        .background-icons {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* Base icon styling */
+        .icon {
+            position: absolute;
+            opacity: 0.15;
+            filter: drop-shadow(0 0 2px rgba(0,0,0,0.1));
+            will-change: transform;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            cursor: default;
+        }
+
+        /* Different icon animations and sizes */
+        .icon1 {
+            width: 50px;
+            height: 50px;
+            top: 15%;
+            left: 10%;
+            fill: #4a69bd;
+            animation-name: floatUpDown;
+            animation-duration: 6s;
+        }
+
+        .icon2 {
+            width: 40px;
+            height: 40px;
+            top: 60%;
+            left: 25%;
+            fill: #ACB6E5;
+            animation-name: floatSideways;
+            animation-duration: 7s;
+            animation-delay: 2s;
+        }
+
+        .icon3 {
+            width: 45px;
+            height: 45px;
+            top: 50%;
+            left: 75%;
+            fill: #f8ffae;
+            animation-name: floatUpDown;
+            animation-duration: 5s;
+            animation-delay: 1s;
+        }
+
+        .icon4 {
+            width: 55px;
+            height: 55px;
+            top: 20%;
+            left: 80%;
+            fill: #74ebd5;
+            animation-name: floatSideways;
+            animation-duration: 8s;
+            animation-delay: 3s;
+        }
+
+        /* Keyframes for floating animations */
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes floatSideways {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="background-icons" aria-hidden="true">
+    <!-- Book icon -->
+    <svg class="icon icon1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="12" y="14" width="40" height="36" rx="4" ry="4" stroke="currentColor" stroke-width="2" fill="none"/>
+        <line x1="12" y1="14" x2="52" y2="50" stroke="currentColor" stroke-width="1" />
+        <line x1="52" y1="14" x2="12" y2="50" stroke="currentColor" stroke-width="1" />
+    </svg>
+
+    <!-- Graduation cap icon -->
+    <svg class="icon icon2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="32,10 5,26 32,42 59,26" stroke="currentColor" stroke-width="2" fill="currentColor" />
+        <rect x="26" y="42" width="12" height="12" fill="currentColor" />
+    </svg>
+
+    <!-- Pencil icon -->
+    <svg class="icon icon3" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 52l28-28 8 8-28 28z" fill="currentColor" />
+        <line x1="44" y1="12" x2="52" y2="20" stroke="currentColor" stroke-width="2" />
+    </svg>
+
+    <!-- Light bulb icon -->
+    <svg class="icon icon4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="32" cy="24" r="12" fill="currentColor" />
+        <rect x="28" y="36" width="8" height="12" fill="currentColor" />
+    </svg>
+</div>
+
+<div class="container">
+    <h1>Predict Enrollment Total</h1>
+    <p>Enter the following details for enrollment prediction:</p>
+    <form action="/predict" method="post">
+        {% for field in ['SCHTOT', 'SCH1', 'SCH2', 'SCH3', 'TOTPOPULAT', 'P_SC_POP', 'P_ST_POP', 'SEXRATIO', 'OVERALL_LI', 'FEMALE_LIT', 'MALE_LIT', 'TCHTOT', 'TCHTOTG', 'TCHTOTM', 'AREA_SQKM'] %}
+            <label for="{{ field }}">{{ field }}:</label>
+            <input type="text" name="{{ field }}" id="{{ field }}" required />
+        {% endfor %}
+        <button type="submit">Predict</button>
+    </form>
+    <a href="/">Go Back to Home</a>
+</div>
+
+</body>
+</html>
